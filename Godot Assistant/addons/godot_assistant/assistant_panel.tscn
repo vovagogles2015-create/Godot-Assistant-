@@ -1,0 +1,66 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1 asistente"]
+
+[ext_resource type="Script" path="res://addons/godot_assistant/assistant_panel.gd" id="1_script"]
+
+[node name="AssistantPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="SettingsBar" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="VBox/SettingsBar"]
+layout_mode = 2
+text = "Claude API Key:"
+
+[node name="APIKeyInput" type="LineEdit" parent="VBox/SettingsBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+secret = true
+placeholder_text = "sk-ant-..."
+
+[node name="HSeparator" type="HSeparator" parent="VBox"]
+layout_mode = 2
+
+[node name="ChatLog" type="RichTextLabel" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+scroll_following = true
+
+[node name="LoadingLabel" type="Label" parent="VBox"]
+visible = false
+layout_mode = 2
+text = "Thinking..."
+horizontal_alignment = 1
+
+[node name="InputRow" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="InputEdit" type="LineEdit" parent="VBox/InputRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Message the AI Assistant..."
+
+[node name="SendButton" type="Button" parent="VBox/InputRow"]
+layout_mode = 2
+text = "Send"
+
+[node name="ClaudeRequest" type="HTTPRequest" parent="."]
+timeout = 30.0
